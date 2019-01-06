@@ -53,14 +53,28 @@ The GoogleCast object is a singleton object  which coordinates all of the librar
 The `init` function expects a receiver `appId` previously registered on [Google Cast SDK Developer Console](https://cast.google.com/publish/)
 
 ```javascript
-import Googlecast from 'react-native-googlecast';
+import Googlecast, { LoggerLevel } from 'react-native-googlecast';
 
 // Initialize the cast sender application
 // It will automatically handle the device discovery
 Googlecast.init({
     appId: '', // The receiver app id
     enableLogging: true, // Enable logging
-    logLevel: Googlecast.logLevel.INFO // 
+    logLevel: LoggerLevel.INFO // 
 });
 ```
   
+### Cast Button
+
+The `CastButton component manages almost everything you need in order to connect your app to a device. 
+ 
+It becomes visible when a receiver is discovered that supports your app. 
+
+When the user first clicks on the cast button, a cast dialog is displayed which lists the discovered devices. When the user clicks on the cast button while the device is connected, it allows the user to disconnect from the cast device.
+
+```javascript
+import { CastButton } from 'react-native-googlecast';
+
+export const MyReactComponent = () => {
+    return <CastButton tintColor="#FFF" />
+};

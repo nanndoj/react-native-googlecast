@@ -15,7 +15,7 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(init: (NSDictionary *)config) {
     
     NSString *appId = [RCTConvert NSString:config[@"appId"]];
-    BOOL loggingEnabled = [RCTConvert BOOL:config[@"loggingEnabled"]];
+    BOOL enableLog = [RCTConvert BOOL:config[@"enableLog"]];
     
     GCKDiscoveryCriteria *criteria = [[GCKDiscoveryCriteria alloc] initWithApplicationID:appId];
     
@@ -23,14 +23,14 @@ RCT_EXPORT_METHOD(init: (NSDictionary *)config) {
     
     [GCKCastContext setSharedInstanceWithOptions:options];
     
-    if(loggingEnabled) {
+    if(enableLog) {
+        GCKLoggerLevel loggerLevel = [RCTConvert NSInteger:config[@"loggerLevel"]];
         // Enable logger.
         [GCKLogger sharedInstance].delegate = self;
         GCKLoggerFilter *filter = [[GCKLoggerFilter alloc] init];
-        [filter setMinimumLevel:GCKLoggerLevelVerbose];
+        [filter setMinimumLevel:loggerLevel];
         [GCKLogger sharedInstance].filter = filter;
     }
-    
 }
 
 

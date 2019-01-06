@@ -3,7 +3,6 @@ const { RNGooglecast } = NativeModules;
 
 
 export { default as CastButton } from './src/widgets/CastButton';
-export { LoggerLevel } from './logger'
-
+export { default as LoggerLevel } from './src/logger/LoggerLevel'
 
 export default RNGooglecast;
