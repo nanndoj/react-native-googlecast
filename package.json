@@ -1,13 +1,16 @@
 {
   "name": "react-native-googlecast",
   "version": "0.0.1",
-  "description": "",
+  "description": "The Google Cast SDK implementation for React React Native. Enables you to extend your Android or iOS app to direct its streaming video and audio to a TV or sound system.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "google-cast-sdk",
+    "chromecast",
+    "cast"
   ],
   "author": "Fernando Santos<nanndoj@gmail.com>",
   "license": "MIT",

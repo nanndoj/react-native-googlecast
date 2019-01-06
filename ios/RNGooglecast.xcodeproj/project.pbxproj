@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86474EA521E134720004D6A7 /* RNTCastButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86474EA421E134720004D6A7 /* RNTCastButtonManager.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNGooglecast.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNGooglecast.m */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNGooglecast.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNGooglecast.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		86474EA421E134720004D6A7 /* RNTCastButtonManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTCastButtonManager.m; sourceTree = "<group>"; };
+		86474EA621E134950004D6A7 /* RNTCastButtonManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTCastButtonManager.h; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNGooglecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGooglecast.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNGooglecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGooglecast.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,10 +53,20 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				86474EA221E133E10004D6A7 /* widgets */,
 				B3E7B5881CC2AC0600A0062D /* RNGooglecast.h */,
 				B3E7B5891CC2AC0600A0062D /* RNGooglecast.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		86474EA221E133E10004D6A7 /* widgets */ = {
+			isa = PBXGroup;
+			children = (
+				86474EA421E134720004D6A7 /* RNTCastButtonManager.m */,
+				86474EA621E134950004D6A7 /* RNTCastButtonManager.h */,
+			);
+			name = widgets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E7B58A1CC2AC0600A0062D /* RNGooglecast.m in Sources */,
+				86474EA521E134720004D6A7 /* RNTCastButtonManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +170,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/../../../ios/Pods/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -193,7 +208,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/../../../ios/Pods/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -204,7 +220,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",

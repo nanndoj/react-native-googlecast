@@ -9,12 +9,19 @@
 
 `$ react-native link react-native-googlecast`
 
-### Manual installation
 
+#### Configure the Cast SDK - iOS
+
+*Using cocoapods* - Add the following line to your podfile
+
+`pod 'google-cast-sdk', '4.3.0'`
+
+or make sure you follow the steps to [manual setup Google Cast SDK for IOS](https://developers.google.com/cast/docs/ios_sender/#manual_setup)
+
+### Manual installation
 
 #### iOS
 
-1.Make sure you follow the steps required to [Setup Google Cast SDK for IOS](https://developers.google.com/cast/docs/ios_sender/)
 2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 3. Go to `node_modules` ➜ `react-native-googlecast` and add `RNGooglecast.xcodeproj`
 4. In XCode, in the project navigator, select your project. Add `libRNGooglecast.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
@@ -37,20 +44,23 @@
       compile project(':react-native-googlecast')
   	```
 
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
-
-1. In Visual Studio add the `RNGooglecast.sln` in `node_modules/react-native-googlecast/windows/RNGooglecast.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using Googlecast.RNGooglecast;` to the usings at the top of the file
-  - Add `new RNGooglecastPackage()` to the `List<IReactPackage>` returned by the `Packages` method
-
-
 ## Usage
-```javascript
-import RNGooglecast from 'react-native-googlecast';
 
-// TODO: What to do with the module?
-RNGooglecast;
+### Initialize the Cast Context
+
+The GoogleCast object is a singleton object  which coordinates all of the library's activities. This object must be initialized early in the application's lifecycle, so that automatic session resumption on sender app restart can trigger properly.
+
+The `init` function expects a receiver `appId` previously registered on [Google Cast SDK Developer Console](https://cast.google.com/publish/)
+
+```javascript
+import Googlecast from 'react-native-googlecast';
+
+// Initialize the cast sender application
+// It will automatically handle the device discovery
+Googlecast.init({
+    appId: '', // The receiver app id
+    enableLogging: true, // Enable logging
+    logLevel: Googlecast.logLevel.INFO // 
+});
 ```
   

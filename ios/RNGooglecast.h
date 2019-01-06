@@ -1,12 +1,7 @@
-
-#if __has_include("RCTBridgeModule.h")
-#import "RCTBridgeModule.h"
-#else
 #import <React/RCTBridgeModule.h>
-#endif
 #import <GoogleCast/GoogleCast.h>
 
-@interface RNGooglecast : NSObject <RCTBridgeModule>
+@interface RNGooglecast : NSObject <RCTBridgeModule, GCKLoggerDelegate>
 
 @end
   
