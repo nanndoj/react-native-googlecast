@@ -14,7 +14,11 @@ CastButton.propTypes = {
      * The color of the button
      */
     tintColor: PropTypes.string,
-
+    /**
+     * If it has not been shown before, presents a fullscreen modal view controller that calls
+     * attention to the Cast button and displays some brief instructional text about its use.
+     */
+    presentCastInstructionsOnce: PropTypes.bool
 };
 
 CastButton.defaultProps = {

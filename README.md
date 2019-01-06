@@ -53,11 +53,11 @@ The GoogleCast object is a singleton object  which coordinates all of the librar
 The `init` function expects a receiver `appId` previously registered on [Google Cast SDK Developer Console](https://cast.google.com/publish/)
 
 ```javascript
-import Googlecast, { LoggerLevel } from 'react-native-googlecast';
+import GoogleCast, { LoggerLevel } from 'react-native-googlecast';
 
 // Initialize the cast sender application
 // It will automatically handle the device discovery
-Googlecast.init({
+GoogleCast.init({
     appId: '', // The receiver app id
     enableLogging: true, // Enable logging
     loggerLevel: LoggerLevel.INFO // Define the logger level
@@ -76,5 +76,19 @@ When the user first clicks on the cast button, a cast dialog is displayed which 
 import { CastButton } from 'react-native-googlecast';
 
 export const MyReactComponent = () => {
-    return <CastButton tintColor="#FFF" />
+    return (
+        <CastButton 
+            tintColor="#FFF" // The color of the cast button
+            presentCastInstructionsOnce={true} // Calls attention to this cast button once
+        />
+    )
 };
+```
+
+### Clear instructions shown flags
+
+Clears the persistent flag that tracks whether the Cast instructions modal has been shown.
+
+```javascript
+GoogleCast.clearCastInstructionsShownFlag();
+```

@@ -33,6 +33,10 @@ RCT_EXPORT_METHOD(init: (NSDictionary *)config) {
     }
 }
 
+RCT_EXPORT_METHOD(clearCastInstructionsShownFlag) {
+    [[GCKCastContext sharedInstance] clearCastInstructionsShownFlag];
+}
+
 
 #pragma mark - GCKLoggerDelegate
 
