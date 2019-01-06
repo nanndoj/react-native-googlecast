@@ -60,13 +60,13 @@ import Googlecast, { LoggerLevel } from 'react-native-googlecast';
 Googlecast.init({
     appId: '', // The receiver app id
     enableLogging: true, // Enable logging
-    logLevel: LoggerLevel.INFO // 
+    loggerLevel: LoggerLevel.INFO // Define the logger level
 });
 ```
   
 ### Cast Button
 
-The `CastButton component manages almost everything you need in order to connect your app to a device. 
+The `CastButton` component manages almost everything you need in order to connect your app to a device. 
  
 It becomes visible when a receiver is discovered that supports your app. 
 
