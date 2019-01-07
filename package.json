@@ -4,7 +4,6 @@
   "description": "The simplest and declarative way to streaming video and audio to a Google Cast TV or sound system from a React Native application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "react-native",
