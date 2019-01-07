@@ -1,6 +1,8 @@
 
 # react-native-googlecast
 
+IOS only for awhile
+
 ## Getting started
 
 `$ npm install react-native-googlecast --save`
@@ -30,6 +32,8 @@ or make sure you follow the steps to [manual setup Google Cast SDK for IOS](http
 6. Run your project (`Cmd+R`)<
 
 #### Android
+
+**ANDROID VERSION STILL IN DEVELOPMENT. WILL BE PUBLISHED SOON**
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
   - Add `import com.reactlibrary.RNGooglecastPackage;` to the imports at the top of the file
@@ -99,3 +103,12 @@ Clears the persistent flag that tracks whether the Cast instructions modal has b
 ```javascript
 GoogleCast.clearCastInstructionsShownFlag();
 ```
+
+##IMPORTANT
+Only videos with **CORS headers** can be casted. It is a requirement for adaptive content on Chromecast. If you want to check if the video that you want to play include those headers, you can run the following command
+
+````
+curl -v [video url]
+````
+
+and check if the header `Access-Control-Allow-Origin` is present
