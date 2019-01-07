@@ -77,10 +77,17 @@ import { CastButton } from 'react-native-googlecast';
 
 export const MyReactComponent = () => {
     return (
-        <CastButton 
-            tintColor="#FFF" // The color of the cast button
-            presentCastInstructionsOnce={true} // Calls attention to this cast button once
-        />
+        <CastButton
+           tintColor="#FFF"
+           presentCastInstructionsOnce={true}
+           media={{
+             url: 'http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8',
+             contentType: 'application/x-mpegURL', // video/mp4 for MP4 Video
+             title: 'My Cast Video',
+             subtitle: 'Description of the video',
+             imageUrl: 'https://sample-videos.com/img/Sample-jpg-image-500kb.jpg'
+           }}
+         />
     )
 };
 ```
