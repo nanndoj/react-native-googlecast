@@ -70,7 +70,7 @@ GoogleCast.init({
   
 ### Cast Button
 
-The `CastButton` component manages almost everything you need in order to connect your app to a device. 
+The `CastButton` component manages almost everything you need in order to connect your app to a device and start casting. 
  
 It becomes visible when a receiver is discovered that supports your app. 
 
@@ -104,7 +104,7 @@ Clears the persistent flag that tracks whether the Cast instructions modal has b
 GoogleCast.clearCastInstructionsShownFlag();
 ```
 
-##IMPORTANT
+## IMPORTANT
 Only videos with **CORS headers** can be casted. It is a requirement for adaptive content on Chromecast. If you want to check if the video that you want to play include those headers, you can run the following command
 
 ````
