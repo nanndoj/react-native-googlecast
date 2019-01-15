@@ -67,7 +67,7 @@ GoogleCast.init({
     loggerLevel: LoggerLevel.INFO // Define the logger level
 });
 ```
-  
+
 ### Cast Button
 
 The `CastButton` component manages almost everything you need in order to connect your app to a device and start casting. 
@@ -83,7 +83,28 @@ export const MyReactComponent = () => {
     return (
         <CastButton
            tintColor="#FFF"
-           presentCastInstructionsOnce={true}
+           media={{
+             url: 'http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8',
+             contentType: 'application/x-mpegURL', // video/mp4 for MP4 Video
+             title: 'My Cast Video',
+             subtitle: 'Description of the video',
+             imageUrl: 'https://sample-videos.com/img/Sample-jpg-image-500kb.jpg'
+           }}
+         />
+    )
+};
+```
+  
+### Introductory Overlay
+
+Introducing the cast button helps existing users know that the sender app now supports Casting and also helps users new to Google Cast.
+
+```diff
+export const MyReactComponent = () => {
+    return (
+        <CastButton
+           tintColor="#FFF"
++          presentCastInstructionsOnce={true}
            media={{
              url: 'http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8',
              contentType: 'application/x-mpegURL', // video/mp4 for MP4 Video
@@ -96,12 +117,33 @@ export const MyReactComponent = () => {
 };
 ```
 
-### Clear instructions shown flags
+#### Clear instructions shown flags
 
 Clears the persistent flag that tracks whether the Cast instructions modal has been shown.
 
 ```javascript
 GoogleCast.clearCastInstructionsShownFlag();
+```
+
+### Expanded controller
+
+The Google Cast Design Checklist requires a sender app to provide an [expanded controller](https://developers.google.com/cast/docs/design_checklist/sender#sender-expanded-controller) for the media being cast. The expanded controller is a full screen version of the mini controller.
+
+First, let the library know that you are interested in using the expanded control by adding `useDefaultExpandedMediaControls` when initializing the library:
+
+```diff
+GoogleCast.init({
+    appId: '', // The receiver app id
+    enableLogging: true, // Enable logging
+    loggerLevel: LoggerLevel.INFO // Define the logger level
++   useDefaultExpandedMediaControls: true
+});
+```
+
+Then call `presentDefaultExpandedMediaControls` function to load the expanded control screen whenever you want.
+
+```javascript
+GoogleCast.presentDefaultExpandedMediaControls();
 ```
 
 ## IMPORTANT

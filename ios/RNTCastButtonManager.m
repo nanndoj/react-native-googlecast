@@ -1,4 +1,5 @@
 #import "RNTCastButtonManager.h"
+#import "RNTMiniMediaControlsViewController.h"
 
 @implementation RNTCastButtonManager
 
@@ -21,6 +22,12 @@ RCT_CUSTOM_VIEW_PROPERTY(presentCastInstructionsOnce, BOOL, GCKUICastButton) {
 }
 
 // Custom properties
+RCT_CUSTOM_VIEW_PROPERTY(autoPlay, BOOL, GCKUICastButton) {
+    // json = propertyValue
+    self.autoPlay = json ? [RCTConvert BOOL:json] : YES;
+}
+
+// Custom properties
 RCT_CUSTOM_VIEW_PROPERTY(media, NSDictionary, GCKUICastButton) {
     // json = propertyValue
     NSDictionary *media = json ? [RCTConvert NSDictionary:json] : nil;
@@ -32,7 +39,6 @@ RCT_CUSTOM_VIEW_PROPERTY(media, NSDictionary, GCKUICastButton) {
     NSString *imageUrl = [RCTConvert NSString:media[@"imageUrl"]];
     NSString *mediaUrl = [RCTConvert NSString:media[@"url"]];
     NSString *contentType = [RCTConvert NSString:media[@"contentType"]];
-    double streamDuration = [RCTConvert double:media[@"streamDuration"]];
     double playPosition = [RCTConvert double:media[@"playPosition"]];
     
     GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] initWithMetadataType:GCKMediaMetadataTypeMovie];
@@ -52,26 +58,23 @@ RCT_CUSTOM_VIEW_PROPERTY(media, NSDictionary, GCKUICastButton) {
                         height:360]];
     }
     
-    streamDuration = !streamDuration ? INFINITY : streamDuration;
-    
-    self.autoPlay = [RCTConvert BOOL:media[@"autoPlay"]];
     self.playPosition = !playPosition ? 0 : playPosition;
-    self.mediaInformation = [[GCKMediaInformation alloc] initWithContentID:mediaUrl
-                                        streamType:GCKMediaStreamTypeBuffered
-                                        contentType:contentType
-                                        metadata:metadata
-                                        streamDuration:streamDuration
-                                        mediaTracks:nil
-                                        textTrackStyle:nil
-                                        customData:nil];
+    
+    GCKMediaInformationBuilder *mediaInfoBuilder =
+    [[GCKMediaInformationBuilder alloc] initWithContentURL: [NSURL URLWithString:mediaUrl]];
+    mediaInfoBuilder.streamType = GCKMediaStreamTypeNone;
+    mediaInfoBuilder.contentType = contentType;
+    mediaInfoBuilder.metadata = metadata;
+    self.mediaInformation = [mediaInfoBuilder build];
     
 }
 
 #pragma mark - GCKSessionManagerListener events
 -(void)sessionManager:(GCKSessionManager *)sessionManager didStartCastSession:(GCKCastSession *)session {
-    [session.remoteMediaClient loadMedia:self.mediaInformation
-                                autoplay:self.autoPlay
-                                playPosition:self.playPosition];
+    GCKRequest *request = [session.remoteMediaClient loadMedia:self.mediaInformation];
+    if (request != nil) {
+        request.delegate = self;
+    }
 }
 
 - (UIView *)view {

@@ -1,4 +1,5 @@
 #import "RNGooglecast.h"
+#import "RNTMiniMediaControlsViewController.h"
 #import <React/RCTConvert.h>
 
 @implementation RNGooglecast
@@ -16,12 +17,13 @@ RCT_EXPORT_METHOD(init: (NSDictionary *)config) {
     
     NSString *appId = [RCTConvert NSString:config[@"appId"]];
     BOOL enableLog = [RCTConvert BOOL:config[@"enableLog"]];
+    BOOL useDefaultExpandedMediaControls = [RCTConvert BOOL:config[@"useDefaultExpandedMediaControls"]];
     
     GCKDiscoveryCriteria *criteria = [[GCKDiscoveryCriteria alloc] initWithApplicationID:appId];
     
     GCKCastOptions *options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:criteria];
-    
     [GCKCastContext setSharedInstanceWithOptions:options];
+    [GCKCastContext sharedInstance].useDefaultExpandedMediaControls = useDefaultExpandedMediaControls;
     
     if(enableLog) {
         GCKLoggerLevel loggerLevel = [RCTConvert NSInteger:config[@"loggerLevel"]];
@@ -33,8 +35,14 @@ RCT_EXPORT_METHOD(init: (NSDictionary *)config) {
     }
 }
 
+
 RCT_EXPORT_METHOD(clearCastInstructionsShownFlag) {
     [[GCKCastContext sharedInstance] clearCastInstructionsShownFlag];
+}
+
+
+RCT_EXPORT_METHOD(presentDefaultExpandedMediaControls) {
+    [[GCKCastContext sharedInstance] presentDefaultExpandedMediaControls];
 }
 
 
